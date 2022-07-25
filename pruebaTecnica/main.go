@@ -2,10 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"github.com/perajim/controllers"
 )
 
@@ -30,12 +28,6 @@ func CORSMiddleware() gin.HandlerFunc {
 }
 func main() {
 	r := gin.Default()
-
-	//Load the .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file, please create one in the root directory")
-	}
 
 	r.Use(CORSMiddleware())
 
