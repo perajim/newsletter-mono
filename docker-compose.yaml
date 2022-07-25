@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./pruebaTecnica
+      dockerfile: dockerfile
+    ports:
+      - 8080:1323 # host:container
+    volumes:
+      - .:/app
+
+  db:
+    image: mongo
