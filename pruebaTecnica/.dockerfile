@@ -1,22 +1,21 @@
-FROM golang:alpine
-
-MAINTAINER Maintainer
-
-ENV GIN_MODE=release
-ENV PORT=8080
-
+FROM golang:1.16.5 as builder
+# Define build env
+ENV GOOS linux
+ENV CGO_ENABLED 0
+# Add a work directory
 WORKDIR .
+# Cache and install dependencies
+COPY go.mod go.sum ./
+RUN go mod download
+# Copy app files
+COPY . .
+# Build app
+RUN go build -o main
 
-COPY src /github.com/perajim/src
-
-# Run the two commands below to install git and dependencies for the project. 
-# RUN apk update && apk add --no-cache git
-# RUN go get ./...
-
-COPY dependencies /go/src #if you don't want to pull dependencies from git 
-
-RUN go build go-docker-dev.to/src/app
-
-EXPOSE $PORT
-
-ENTRYPOINT ["./app"]
+FROM alpine:3.14 as production
+# Copy built binary from builder
+COPY --from=builder app .
+# Expose port
+EXPOSE 4000
+# Exec built binary
+CMD ./app
