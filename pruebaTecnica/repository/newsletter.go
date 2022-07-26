@@ -173,7 +173,7 @@ func (r NewsletterRepository) GetFile(id string, ctx context.Context) (models.St
 }
 
 func initDB() *mongo.Database {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017/"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://db:27017/"))
 	if err != nil {
 		log.Fatalf("Error occured while establishing connection to mongoDB")
 	}
