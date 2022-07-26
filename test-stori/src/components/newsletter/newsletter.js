@@ -3,19 +3,33 @@ import {StoreFile} from '../api/apiStoreFile'
 import {SendNewsletter} from '../api/apiSendNewsletter'
 import { useParams } from 'react-router-dom';
 import Modal from '../modal/modal';
+import  ModalAddEmails  from '../modal/addEmails'
+import ModalAddEmail from '../modal/addEmail';
 import { Context } from "../../context";
 
 
 export default function Newsletter() {
     const { id } = useParams();
     const [selectedFile, setSelectedFile] = useState();
-    const [showNotification, setshowNotification] = useContext(Context)
+    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
     let titleModal = "Newsletter Enviado con exito"
     let descriptionModal = "Se envio correctamente el newsletter, a la lista de contactos"
+
+    let titleModalEmail = "Se agrego el email"
+    let descriptionModalEmail = "Se agrego correctamente el Email"
 
     const changeHandler = (event) => {
         event.preventDefault(); 
 		setSelectedFile(event.target.files[0]);
+	};
+
+    const changeModalAddEmails = (event) => {
+        event.preventDefault(); 
+		setshowAddRecipients(true)
+	};
+    const changeModalAddEmail = (event) => {
+        event.preventDefault(); 
+		setshowAddRecipient(true)
 	};
 
     const handleSubmission =async (e) => {
@@ -46,7 +60,9 @@ export default function Newsletter() {
     
 	
 	return(
-        <div>  
+        <div> 
+            <ModalAddEmails idNewsletter={id}/>
+            <ModalAddEmail title={titleModalEmail} description={descriptionModalEmail} idNewsletter={id} /> 
             <Modal title={titleModal} description={descriptionModal} />          
             <form onSubmit={handleSubmission} className="space-y-6">
                 <div class="flex justify-center">
@@ -89,6 +105,16 @@ export default function Newsletter() {
                     </div>
                 </div>
             </form>
+            <div class="flex justify-center">
+                <div class="mb-2 w-9/12">
+                    <button onClick={changeModalAddEmails} class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Agregar lista de Emails
+                    </button>
+                    <button onClick={changeModalAddEmail} class="bg-stone-500 hover:bg-stone-700 text-white font-bold py-2 px-4 rounded">
+                        Agregar un solo email
+                    </button>
+                </div>
+            </div>
         </div>
          )
 }

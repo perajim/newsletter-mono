@@ -3,12 +3,28 @@ import { Fragment, useState, useContext } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/outline'
 import { Context } from '../../context'
+import { AddRecipient } from '../api/apiAddRecipient'
 
 export default function ModalAddEmail(props) {
-    const [showNotification, setshowNotification] = useContext(Context)
+    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
+
+    const createNewsletter = (e) => {
+        e.preventDefault(); 
+        let { name } = document.forms[1];
+        let data = {"_id":props.idNewsletter, "emailRecipient":name.value}
+        AddRecipient(data)
+        .then(response => { 
+            console.log(response)
+            setshowAddRecipient(false)
+            setshowNotification(true)
+          })
+          .catch ( e=> {
+            console.log(e)
+          })
+    }
     return (
-        <Transition.Root show={true} as={Fragment}>
-        <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setshowNotification}>
+        <Transition.Root show={showAddRecipient} as={Fragment}>
+        <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setshowAddRecipient}>
             <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <Transition.Child
                 as={Fragment}
@@ -38,7 +54,7 @@ export default function ModalAddEmail(props) {
                 <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
                 <div class="flex justify-center">
                     <div class="mb-3 w-9/12">      
-                        <form>
+                        <form  onSubmit={createNewsletter}>
                             <div>
                             <div class="flex justify-center">
                                             <div class="mb-1 ">

@@ -6,7 +6,7 @@ import { Context } from '../../context'
 import { useNavigate  } from "react-router-dom";
 
 export default function Modal(props) {
-    const [showNotification, setshowNotification] = useContext(Context)
+    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
     const history = useNavigate ();
 console.log(props.title)
   return (

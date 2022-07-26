@@ -6,7 +6,7 @@ import { useNavigate  } from "react-router-dom";
 
 
 export default function AddNewsletter() {
-    const [showNotification, setshowNotification] = useContext(Context)
+    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
     let titleModal = "Se creo el nuevo newsletter"
     let descriptionModal = "Se creo el nuevo newsletter, ahora puedes agregar correos y enviarles información"
     const history = useNavigate ();
@@ -18,7 +18,7 @@ export default function AddNewsletter() {
         CreateNewsletter(data)
         .then(response => {
             setshowNotification(true)
-            setTimeout(function(){ history("/newsletter/"+response.newsletter.id);setshowNotification(false) }, 5000);         
+            setTimeout(function(){ history("/newsletter/"+response.newsletter.id);setshowNotification(false) }, 3000);         
           })
           .catch ( e=> {
             console.log(e)

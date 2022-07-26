@@ -1,4 +1,4 @@
-let BASE_URL = 'localhost:8080/newsletter/recipient';
+let BASE_URL = 'http://localhost:8080/newsletter/recipient';
   export async function AddRecipient(newsletter) {
     const response = await fetch(BASE_URL, {
         method: 'POST',

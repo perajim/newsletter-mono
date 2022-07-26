@@ -5,7 +5,6 @@ import ModalAddEmail from './modal/addEmail';
 function MainView() {
   return (
     <>
-    <ModalAddEmail />
     <AddNewsletter />
     <ListNewsletter />
     </>

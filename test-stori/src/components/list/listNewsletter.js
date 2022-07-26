@@ -1,11 +1,12 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import { useNavigate  } from "react-router-dom";
-
+import { Context } from '../../context';
 
 export default function ListNewsletter() {
     const history = useNavigate ();
     const [newsletters, setNewsletters] = useState([]);
-    
+
+   
     useEffect(() => {
         const url = "http://localhost:8080/newsletters";
     
@@ -23,6 +24,7 @@ export default function ListNewsletter() {
     }, []);
 if (newsletters != null){
     return(
+<>
         <div class="flex justify-center">
                     <div class="mb-3 w-9/12">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -36,12 +38,6 @@ if (newsletters != null){
                         </th>
                         <th scope="col" className="py-3 px-6">
                             Emails registrados
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Agregar lista de emails
-                        </th>
-                        <th scope="col" className="py-3 px-6">
-                            Agregar Email
                         </th>
                     </tr>
                 </thead>
@@ -59,17 +55,7 @@ if (newsletters != null){
                     </td>
                     <td className="py-4 px-6">
                     {newsletter.Recipients.length}
-                    </td>
-                    <td className="py-4 px-6">
-                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                        Agregar
-                    </button>
-                    </td>
-                    <td className="py-4 px-6">
-                    <button class="bg-stone-500 hover:bg-stone-700 text-white font-bold py-2 px-4 rounded">
-                        Agregar
-                    </button>
-                    </td>     
+                    </td>    
                 </tr>
                 ))}
 
@@ -77,6 +63,7 @@ if (newsletters != null){
             </table>
         </div>
         </div>
+        </>
     )}else{
         return(
             <div class="flex justify-center">

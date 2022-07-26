@@ -104,6 +104,27 @@ func (ctrl NewsletterController) AddRecipient(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "correo agregado al newsletter con exito"})
 }
 
+func (ctrl NewsletterController) AddRecipients(c *gin.Context) {
+	var updateNewsletterRecipients models.UpdateNewsletterRecipients
+
+	if c.ShouldBindJSON(&updateNewsletterRecipients) != nil {
+		c.AbortWithStatusJSON(http.StatusNotAcceptable, gin.H{"message": "Invalid form"})
+		return
+	}
+	id := updateNewsletterRecipients.IDNewsletter
+	for _, email := range updateNewsletterRecipients.EmailRecipients {
+		var updateNewsletter models.UpdateNewsletter
+		updateNewsletter.EmailRecipient = email
+		updateNewsletter.IDNewsletter = id
+		err := newsletter.AddRecipient(updateNewsletter, c)
+		if err != nil {
+			c.JSON(http.StatusOK, gin.H{"message": "Hubo un error al agregar un correo al newsletter"})
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "correos agregado al newsletter con exito"})
+}
+
 func (ctrl NewsletterController) RemoveEmail(c *gin.Context) {
 	newsletterId := c.Param("newsletter")
 	email := c.Param("email")
