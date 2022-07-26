@@ -8,7 +8,7 @@ export const ContextProvider = ({ children }) => {
     const [showAddEmailSuccess, setShowAddEmailSuccess] = useState(false);
       
     return (
-        <Context.Provider value={[showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient, showAddEmailSuccess, setShowAddEmailSuccess]}>
+        <Congittext.Provider value={[showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient, showAddEmailSuccess, setShowAddEmailSuccess]}>
             {children}
         </Context.Provider>
     );
