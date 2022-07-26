@@ -5,13 +5,12 @@ import { CheckIcon } from '@heroicons/react/outline'
 import { Context } from '../../context'
 import { useNavigate  } from "react-router-dom";
 
-export default function Modal(props) {
-    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
+export default function AddEmailSuccess(props) {
+    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient, showAddEmailSuccess, setShowAddEmailSuccess] = useContext(Context)
     const history = useNavigate ();
-console.log(props.title)
   return (
-    <Transition.Root show={showNotification} as={Fragment}>
-      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setshowNotification}>
+    <Transition.Root show={showAddEmailSuccess} as={Fragment}>
+      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setShowAddEmailSuccess}>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -45,11 +44,11 @@ console.log(props.title)
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                    {props.title}
+                    Email Agregado correctamente
                   </Dialog.Title>
                   <div className="mt-2">
                     <p className="text-sm text-gray-500">
-                        {props.description}
+                       Se Agrego Correctamente el Email
                     </p>
                   </div>
                 </div>
@@ -58,7 +57,7 @@ console.log(props.title)
                 <button
                   type="button"
                   className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
-                  onClick={()=>setshowNotification(false)}
+                  onClick={()=>setshowAddRecipient(false)}
                 >
                   OK!
                 </button>

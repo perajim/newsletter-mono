@@ -37,6 +37,7 @@ func main() {
 	r.POST("/newsletter", newsletter.Create)
 	r.POST("/shipping/newsletter/:id/:idFile", newsletter.SendNewsletter)
 	r.POST("/newsletter/recipient", newsletter.AddRecipient)
+	r.POST("/newsletter/recipients", newsletter.AddRecipients)
 	r.POST("/newsletter/file", newsletter.SaveFile)
 	r.GET("/suscription/:newsletter/:email", newsletter.RemoveEmail)
 	r.GET("/newsletter/:newsletter/recipients", newsletter.GetRecipients)

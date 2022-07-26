@@ -31,6 +31,12 @@ type UpdateNewsletter struct {
 	EmailRecipient string `bson:"EmailRecipient" json:"EmailRecipient"`
 }
 
+//UpdateNewsletter ...
+type UpdateNewsletterRecipients struct {
+	IDNewsletter    string   `bson:"_id" json:"_id"`
+	EmailRecipients []string `bson:"EmailRecipients" json:"EmailRecipients"`
+}
+
 //SendNewsletter ...
 type SendNewsletter struct {
 	Content string `bson:"Content" json:"Content"`
