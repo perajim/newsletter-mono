@@ -8,7 +8,7 @@ export default function ListNewsletter() {
 
    
     useEffect(() => {
-        const url = "http://app:8080/newsletters";
+        const url = "http://localhost:8080/newsletters";
     
         const fetchData = async () => {
           try {
