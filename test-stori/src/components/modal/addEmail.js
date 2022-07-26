@@ -4,16 +4,10 @@ import { Dialog, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/outline'
 import { Context } from '../../context'
 import { AddRecipient } from '../api/apiAddRecipient'
-<<<<<<< HEAD
 
 
 export default function ModalAddEmail(props) {
     const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient, showAddEmailSuccess, setShowAddEmailSuccess] = useContext(Context)
-=======
-
-export default function ModalAddEmail(props) {
-    const [showNotification, setshowNotification, showAddRecipients, setshowAddRecipients,showAddRecipient, setshowAddRecipient] = useContext(Context)
->>>>>>> 307ccc310aa2b77bdb8d26dd6058b148f57e8195
 
     const createNewsletter = (e) => {
         e.preventDefault(); 
@@ -23,21 +17,14 @@ export default function ModalAddEmail(props) {
         .then(response => { 
             console.log(response)
             setshowAddRecipient(false)
-<<<<<<< HEAD
             setShowAddEmailSuccess(true)
-=======
-            setshowNotification(true)
->>>>>>> 307ccc310aa2b77bdb8d26dd6058b148f57e8195
           })
           .catch ( e=> {
             console.log(e)
           })
     }
     return (
-<<<<<<< HEAD
         <>
-=======
->>>>>>> 307ccc310aa2b77bdb8d26dd6058b148f57e8195
         <Transition.Root show={showAddRecipient} as={Fragment}>
         <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" onClose={setshowAddRecipient}>
             <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
